@@ -467,7 +467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &212564889
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -536,8 +536,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 212564888}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.420701, y: 1.4, z: -3.6210961}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -8.55, y: 0, z: -3.6210961}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1706281711}
   m_RootOrder: 1
@@ -571,7 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9426ae4860d7da4a842b646949c76c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointRadius: 3
+  pointRadius: 2
   renderCircles: 0
   screenSize: 1
   interpolation: 2
@@ -1373,12 +1373,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveCenterToTransformPosition: 1
-  pointBudget: 1000000
-  minNodeSize: 100
-  nodesLoadedPerFrame: 150
-  nodesGOsPerFrame: 300
+  pointBudget: 10000000
+  minNodeSize: 10
+  nodesLoadedPerFrame: 15
+  nodesGOsPerFrame: 30
   meshConfiguration: {fileID: 394899952}
-  cacheSizeInPoints: 1000000
+  cacheSizeInPoints: 10000000
   userCamera: {fileID: 189122015}
 --- !u!4 &1311969389
 Transform:
@@ -1700,7 +1700,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1677700813}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4031736}

@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.bloodstainspatterexp.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\caro\\Desktop\\BA_PointCloud-master_OLD\\BloodstainSpatterExp\\actions.json",
+      "action_manifest_path": "C:\\Users\\caro\\Documents\\Github\\BPAExp\\actions.json",
       "strings": {
         "en_us": {
           "name": "BloodstainSpatterExp [Testing]"
