@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{AB6D129B-CF27-49DF-E8BE-1744D16F7ECF}</ProjectGuid>
+    <ProjectGuid>{8C92D630-91ED-2131-B670-10447A6704D5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>SteamVR_Actions</AssemblyName>
@@ -71,10 +71,10 @@
     <Compile Include="Assets\SteamVR_Input\SteamVR_Input_Initialization.cs" />
     <None Include="Assets\SteamVR_Input\SteamVR_Actions.asmdef" />
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -266,7 +266,7 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Valve.Newtonsoft.Json">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -616,7 +616,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="SteamVR.csproj">
-      <Project>{F3116FF2-ADF3-70D6-7048-FC659BA93656}</Project>
+      <Project>{06954FC5-49A9-1ED6-5D20-C9C84BF10740}</Project>
       <Name>SteamVR</Name>
     </ProjectReference>
   </ItemGroup>

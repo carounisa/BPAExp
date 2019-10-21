@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{F00EE0BF-645D-0CED-0182-7C024D7ADB49}</ProjectGuid>
+    <ProjectGuid>{A309FE60-ED55-2269-522A-0AD3D2D8DDA5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>SteamVR_Editor</AssemblyName>
@@ -73,16 +73,16 @@
     <Compile Include="Assets\SteamVR\Editor\SteamVR_UpdateModeEditor.cs" />
     <None Include="Assets\SteamVR\Editor\SteamVR_Editor.asmdef" />
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.TestRunner">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -274,10 +274,10 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Valve.Newtonsoft.Json">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -636,7 +636,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="SteamVR.csproj">
-      <Project>{F3116FF2-ADF3-70D6-7048-FC659BA93656}</Project>
+      <Project>{06954FC5-49A9-1ED6-5D20-C9C84BF10740}</Project>
       <Name>SteamVR</Name>
     </ProjectReference>
   </ItemGroup>

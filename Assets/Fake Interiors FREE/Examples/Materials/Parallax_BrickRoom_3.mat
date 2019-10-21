@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Back:
-        m_Texture: {fileID: 2800000, guid: 145a72a5927189146b837129ae9590a0, type: 3}
+        m_Texture: {fileID: 2800000, guid: abb1811ac43b93646b36aa1a1393de28, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ceileing:
@@ -85,7 +85,7 @@ Material:
     - _PropLayerToggle: 1
     - _PropsTexTiling: 0.15
     - _PropsTexTilling: 0.15
-    - _RoomIntensity: 1
+    - _RoomIntensity: 0.5
     - _RoomTile: 0.3
     - _Smoothness: 0
     - _SmoothnessValue: 1

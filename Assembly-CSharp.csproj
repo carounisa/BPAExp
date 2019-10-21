@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{0ECA9A59-FD3C-FB35-A63D-538F1C5E7319}</ProjectGuid>
+    <ProjectGuid>{4AA8A027-2C26-44B0-6D27-EA368D5E7151}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -95,6 +95,9 @@
     <Compile Include="Assets\Scripts\BAPointCloudRenderer\ObjectCreation\MeshConfiguration.cs" />
     <Compile Include="Assets\Scripts\BAPointCloudRenderer\ObjectCreation\PointMeshConfiguration.cs" />
     <Compile Include="Assets\Scripts\BAPointCloudRenderer\ObjectCreation\Quad4PointMeshConfiguration.cs" />
+    <Compile Include="Assets\Scripts\DataRecording\DataHandler.cs" />
+    <Compile Include="Assets\Scripts\DataRecording\PlayerData.cs" />
+    <Compile Include="Assets\Scripts\DataRecording\RayHitEvidence.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Sample\DartBoard.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Sample\SRanipal_AvatarEyeSample.cs" />
     <Compile Include="Assets\ViveSR\Scripts\Sample\SRanipal_EyeFocusSample.cs" />
@@ -122,31 +125,31 @@
     <None Include="Assets\Fake Interiors FREE\Examples\Shaders\Props.shader" />
     <None Include="Assets\ViveSR\Shaders\Unlit-Alpha2Gray.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -326,7 +329,7 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="Valve.Newtonsoft.Json">
-      <HintPath>C:/Users/caro/Desktop/BA_PointCloud-master_OLD/BloodstainSpatterExp/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:/Users/caro/Documents/Github/BPAExp/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.6f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -685,23 +688,23 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="SteamVR_Actions.csproj">
-      <Project>{AB6D129B-CF27-49DF-E8BE-1744D16F7ECF}</Project>
+      <Project>{8C92D630-91ED-2131-B670-10447A6704D5}</Project>
       <Name>SteamVR_Actions</Name>
     </ProjectReference>
     <ProjectReference Include="SteamVR_Input_Editor.csproj">
-      <Project>{E50EC947-9066-3C18-2085-782D5A53629C}</Project>
+      <Project>{FEBAB8A9-AD0B-CD4B-344F-2F6842F19485}</Project>
       <Name>SteamVR_Input_Editor</Name>
     </ProjectReference>
     <ProjectReference Include="SteamVR_Editor.csproj">
-      <Project>{F00EE0BF-645D-0CED-0182-7C024D7ADB49}</Project>
+      <Project>{A309FE60-ED55-2269-522A-0AD3D2D8DDA5}</Project>
       <Name>SteamVR_Editor</Name>
     </ProjectReference>
     <ProjectReference Include="SteamVR.csproj">
-      <Project>{F3116FF2-ADF3-70D6-7048-FC659BA93656}</Project>
+      <Project>{06954FC5-49A9-1ED6-5D20-C9C84BF10740}</Project>
       <Name>SteamVR</Name>
     </ProjectReference>
     <ProjectReference Include="SteamVR_Windows_EditorHelper.csproj">
-      <Project>{AB6F93E8-BF96-9041-39B8-7882566BD19F}</Project>
+      <Project>{6FCDD141-73A0-97C8-1149-070590FE560D}</Project>
       <Name>SteamVR_Windows_EditorHelper</Name>
     </ProjectReference>
   </ItemGroup>
