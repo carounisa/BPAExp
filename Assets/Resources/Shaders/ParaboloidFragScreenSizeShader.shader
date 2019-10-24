@@ -11,6 +11,8 @@
 		_ScreenHeight("Screen Height", Int) = 0
 		[Toggle] _Circles("Circles", Int) = 0
 		[Toggle] _Cones("Cones", Int) = 0
+		_highlight1Position("Highlight 1 Position", Vector) = (0,0,0,0)
+		_highlight1Size("Highlight 1 Size", Vector) = (0,0,0,0)
 	}
 
 		SubShader
@@ -61,6 +63,14 @@
 				float _FOV;
 				float4x4 _InverseProjMatrix;
 
+				float _hilightOpacity;
+
+				float4 _highlight1Position;
+				float4 _highlight1Size;
+								
+				float4 _highlight2Position;
+				float4 _highlight2Size;
+				
 				VertexMiddle vert(VertexInput v) {
 					VertexMiddle o;
 					float4 viewpos = mul(UNITY_MATRIX_MV, v.position);
@@ -68,6 +78,31 @@
 					float slope = tan(_FOV / 2);
 					o.size = -_PointSize * slope * viewpos.z * 2 / _ScreenHeight;
 					o.color = v.color;
+
+					float4 w = mul(UNITY_MATRIX_M, v.position);
+					
+					float dx1 = abs(_highlight1Position.x - w.x);
+					float dy1 = abs(_highlight1Position.y - w.y);
+					float dz1 = abs(_highlight1Position.z - w.z);
+
+					float dx2 = abs(_highlight2Position.x - w.x);
+					float dy2 = abs(_highlight2Position.y - w.y);
+					float dz2 = abs(_highlight2Position.z - w.z);
+
+
+					if (dx1 < _highlight1Size.x / 2 && dy1 < _highlight1Size.y / 2 && dz1 < _highlight1Size.z / 2)
+					{
+						// pass. point is in the first transform position
+					}
+					else if (dx2 < _highlight2Size.x / 2 && dy2 < _highlight2Size.y / 2 && dz2 < _highlight2Size.z / 2)
+					{
+						// pass. point is in the second transform position
+					}
+					else
+					{
+						// otherwise, dim the point
+						o.color = v.color * _hilightOpacity;
+					}
 					return o;
 				}
 
