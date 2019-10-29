@@ -14,8 +14,10 @@ namespace Valve.VR.Extras
         protected MeshRenderer[] existingRenderers;
         protected GameObject highlightHolder;
         protected static Material highlightMat;
-        [Tooltip("An array of child gameObjects to not render a highlight for. Things like transparent parts, vfx, etc.")]
-        public GameObject[] hideHighlight;
+
+        private bool _isHighlighted;
+        private float _duration = 2f;
+
 
 
         //public bool isDestroying { get; protected set; }
@@ -31,29 +33,11 @@ namespace Valve.VR.Extras
 
             if (highlightMat == null)
                 UnityEngine.Debug.LogError("<b>[SteamVR Interaction]</b> Hover Highlight Material is missing. Please create a material named 'SteamVR_HoverHighlight' and place it in a Resources folder");
+
             CreateHighlightRenderers();
         }
 
-        protected virtual bool ShouldIgnoreHighlight(Component component)
-        {
-            return ShouldIgnore(component.gameObject);
-        }
-
-        protected virtual bool ShouldIgnore(GameObject check)
-        {
-            for (int ignoreIndex = 0; ignoreIndex < hideHighlight.Length; ignoreIndex++)
-            {
-                if (check == hideHighlight[ignoreIndex])
-                    return true;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        protected virtual void CreateHighlightRenderers()
+        public virtual void CreateHighlightRenderers()
         {
             highlightHolder = new GameObject("Highlighter");
 
@@ -66,7 +50,7 @@ namespace Valve.VR.Extras
                 MeshFilter existingFilter = existingFilters[filterIndex];
                 MeshRenderer existingRenderer = existingFilter.GetComponent<MeshRenderer>();
 
-                if (existingFilter == null || existingRenderer == null || ShouldIgnoreHighlight(existingFilter))
+                if (existingFilter == null || existingRenderer == null)
                     continue;
 
                 GameObject newFilterHolder = new GameObject("FilterHolder");
@@ -84,6 +68,11 @@ namespace Valve.VR.Extras
 
                 highlightRenderers[filterIndex] = newRenderer;
                 existingRenderers[filterIndex] = existingRenderer;
+
+                StopAllCoroutines();
+                Debug.Log("enter coroutine");
+                StartCoroutine(GrowHighlight());
+
             }
         }
 
@@ -91,9 +80,6 @@ namespace Valve.VR.Extras
         {
             if (highlightHolder == null)
                 return;
-
-
-            
 
             for (int rendererIndex = 0; rendererIndex < highlightRenderers.Length; rendererIndex++)
             {
@@ -167,11 +153,7 @@ namespace Valve.VR.Extras
          //   }
         }
 
-
-        protected float blendToPoseTime = 0.1f;
-        protected float releasePoseBlendTime = 0.2f;
-
-        protected virtual void OnDestroy()
+        public virtual void OnDestroy()
         {
            // isDestroying = true;
 
@@ -189,9 +171,24 @@ namespace Valve.VR.Extras
                 Destroy(highlightHolder);
         }
 
-        private void HighlightAnimation()
+        private IEnumerator GrowHighlight()
         {
-            //TODO
+            float width = highlightMat.GetFloat("g_flOutlineWidth");
+            float startValue = width;
+            float endValue = _isHighlighted ?  0.000f : 0.003f;
+            float counter = 0f;
+
+            while (counter < _duration )
+            {
+                counter += Time.deltaTime / _duration;
+                width = Mathf.Lerp(startValue, endValue, counter);
+                highlightMat.SetFloat("g_flOutlineWidth", width);
+                yield return null;
+            }
+
+            if (width >= 0.002f) _isHighlighted = true;
+
+
         }
     }
 }
