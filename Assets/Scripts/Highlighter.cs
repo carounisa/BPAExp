@@ -17,12 +17,7 @@ namespace Valve.VR.Extras
 
         private bool _isHighlighted;
         private float _duration = 2f;
-
-
-
-        //public bool isDestroying { get; protected set; }
-       // public bool isHovering { get; protected set; }
-       // public bool wasHovering { get; protected set; }
+        private float _highlightWidth;
 
 
 
@@ -30,15 +25,18 @@ namespace Valve.VR.Extras
         {
 
             highlightMat = (Material)Resources.Load("SteamVR_HoverHighlight", typeof(Material));
+            _highlightWidth = 0f;
+
 
             if (highlightMat == null)
                 UnityEngine.Debug.LogError("<b>[SteamVR Interaction]</b> Hover Highlight Material is missing. Please create a material named 'SteamVR_HoverHighlight' and place it in a Resources folder");
 
-            CreateHighlightRenderers();
+            //CreateHighlightRenderers();
         }
 
-        public virtual void CreateHighlightRenderers()
+        public virtual void CreateHighlightRenderers(Transform target)
         {
+
             highlightHolder = new GameObject("Highlighter");
 
             MeshFilter[] existingFilters = this.GetComponentsInChildren<MeshFilter>(true);
@@ -100,93 +98,40 @@ namespace Valve.VR.Extras
             }
         }
 
-        /// <summary>
-        /// Called when the laser pointer points at this object
-        /// </summary>
-        protected void OnPoint(object sender, PointerEventArgs e)
-        {
-           // wasHovering = isHovering;
-           // isHovering = true;
-
-            if (highlightOnHover == true && e.target == transform)
-            {
-                
-                //MarkUI.UpdateUI(heading, image1, image2, transform);
-                //MarkUI.ShowUI();
-                CreateHighlightRenderers();
-                UpdateHighlightRenderers();
-            }
-        }
-
-        /// <summary>
-        /// Called when the laser pointer pulls the trigger on this object
-        /// </summary>
-        protected void OnPointClick(object sender, PointerEventArgs e)
-        {
-
-
-
-        }
-
-
-        /// <summary>
-        /// Called when a the laser pointer stops pointing at this object
-        /// </summary>
-        private void OnPointOut(object sender, PointerEventArgs e)
-        {
-           // wasHovering = isHovering;
-           // isHovering = false;
-
-            //if (highlightOnHover && highlightHolder != null)
-            //    MarkUI.HideUI();
-            Destroy(highlightHolder);
-        }
-
         protected virtual void Update()
         {
-            //  if (highlightOnHover)
-            //   {
                 UpdateHighlightRenderers();
-
-         //       if (isHovering == false && highlightHolder != null)
-         //           Destroy(highlightHolder);
-         //   }
         }
 
         public virtual void OnDestroy()
         {
-           // isDestroying = true;
-
             if (highlightHolder != null)
                 Destroy(highlightHolder);
-
         }
 
 
         protected virtual void OnDisable()
         {
-           // isDestroying = true;
-
             if (highlightHolder != null)
                 Destroy(highlightHolder);
         }
 
         private IEnumerator GrowHighlight()
         {
-            float width = highlightMat.GetFloat("g_flOutlineWidth");
-            float startValue = width;
+            if (_highlightWidth >= 0.002f) _isHighlighted = true;
+
+            float startValue = _highlightWidth;
             float endValue = _isHighlighted ?  0.000f : 0.003f;
             float counter = 0f;
 
             while (counter < _duration )
             {
                 counter += Time.deltaTime / _duration;
-                width = Mathf.Lerp(startValue, endValue, counter);
-                highlightMat.SetFloat("g_flOutlineWidth", width);
+                _highlightWidth = Mathf.Lerp(startValue, endValue, counter);
+                highlightMat.SetFloat("g_flOutlineWidth", _highlightWidth);
                 yield return null;
             }
 
-            if (width >= 0.002f) _isHighlighted = true;
 
 
         }
