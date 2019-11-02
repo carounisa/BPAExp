@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &4031735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +199,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534866581884222612, guid: 923db89ffed03ce4db7c08755e7ac147,
+        type: 3}
+      propertyPath: m_TagString
+      value: BlueTrajectory
       objectReference: {fileID: 0}
     - target: {fileID: -5975033157549033438, guid: 923db89ffed03ce4db7c08755e7ac147,
         type: 3}
@@ -486,10 +491,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1499507102}
           m_MethodName: CreateHighlightRenderers
-          m_Mode: 2
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 1499507099}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -499,10 +504,10 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 623390566}
           m_MethodName: CreateHighlightRenderers
-          m_Mode: 2
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 623390570}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -901,7 +906,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a461b8ba185314e806378834377019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightOnHover: 1
 --- !u!95 &623390567
 Animator:
   serializedVersion: 3
@@ -921,12 +925,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!4 &623390570 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -5975033157549033438, guid: 923db89ffed03ce4db7c08755e7ac147,
-    type: 3}
-  m_PrefabInstance: {fileID: 111275967}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &660473782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1825,12 +1823,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1800676465}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1499507099 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -5975033157549033438, guid: aaead35a0ab676045984df5440c69566,
-    type: 3}
-  m_PrefabInstance: {fileID: 1800676465}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1499507102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1843,7 +1835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a461b8ba185314e806378834377019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightOnHover: 1
 --- !u!95 &1499507103
 Animator:
   serializedVersion: 3
@@ -2287,6 +2278,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pink
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534866581884222612, guid: aaead35a0ab676045984df5440c69566,
+        type: 3}
+      propertyPath: m_TagString
+      value: PinkTrajectory
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: aaead35a0ab676045984df5440c69566,
         type: 3}

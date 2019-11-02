@@ -6,6 +6,8 @@ TagManager:
   tags:
   - projectile
   - FxTemporaire
+  - PinkTrajectory
+  - BlueTrajectory
   layers:
   - Default
   - TransparentFX
