@@ -55,6 +55,7 @@ namespace Valve.VR.Extras
                 {
                     materials[materialIndex] = highlightMat;
                 }
+
                 newRenderer.sharedMaterials = materials;
 
                 highlightRenderers[filterIndex] = newRenderer;
