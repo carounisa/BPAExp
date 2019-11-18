@@ -11,18 +11,21 @@ public class DataHandler : MonoBehaviour
     [HideInInspector]
     public PlayerData playerData;
     [HideInInspector]
-    public PlayerData.Evidence evidenceData;
-
-    private PlayerData.LookingBehaviour lookingData;
+    public PlayerData.Regions regionData;
+    private PlayerData.MeshEyeData eyeData;
     private PlayerData.HeadData _head;
+    private PlayerData.TimePassed _totalTimePassed;
     private Stopwatch _stopwatch;
     private string _logFile;
     private string _logFilePath;
     private string _logDir;
+    private string _previousRegion;
+    public Dictionary<string, double> _regionTable;
+
 
     private float _interval = 1f;
     private float _currentTime = 0f;
-    private bool _isRecording;
+    private bool _isRecording = true;
 
     private GameObject _target;
 
@@ -54,11 +57,14 @@ public class DataHandler : MonoBehaviour
 
         playerData = new PlayerData();
         playerData.headDataList = new List<PlayerData.HeadData>();
-        playerData.evidenceList = new List<PlayerData.Evidence>();
-        playerData.observationList = new List<PlayerData.LookingBehaviour>();
+        playerData.regionList = new List<PlayerData.Regions>();
+        playerData.meshEyeDataList = new List<PlayerData.MeshEyeData>();
         playerData.timeStampList = new List<string>();
+        playerData.timePassedList = new List<PlayerData.TimePassed>();
         playerData.pNumber = PlayerPrefs.GetInt("Participant Number");
         playerData.condition = PlayerPrefs.GetString("Condition");
+
+        _regionTable = new Dictionary<string, double>();
 
         _logFile = string.Format("log{0}-PNum{1}_Con_{2}.json",
             System.DateTime.Now.ToString("dd-MM-yyyy"),
@@ -67,8 +73,8 @@ public class DataHandler : MonoBehaviour
 
         _stopwatch = new Stopwatch();
         _head = new PlayerData.HeadData();
-        evidenceData = new PlayerData.Evidence();
-        lookingData = new PlayerData.LookingBehaviour();
+        regionData = new PlayerData.Regions();
+        eyeData = new PlayerData.MeshEyeData();
 
         UnityEngine.Debug.Log("Log files stored to: " + _logDir);
 
@@ -91,7 +97,6 @@ public class DataHandler : MonoBehaviour
                     playerData.timeStampList.Add(string.Format("{0}:{1}:{2}:{3}", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond));
                 }
                 _currentTime = _currentTime % _interval;
-
             }
         }
     }
@@ -106,7 +111,18 @@ public class DataHandler : MonoBehaviour
     {
         _stopwatch.Stop();
         System.TimeSpan elapsed = _stopwatch.Elapsed;
-        evidenceData.elapsedTime = string.Format("{0:00}:{1:00}:{2:00}", elapsed.Minutes, elapsed.Seconds, elapsed.Milliseconds);
+
+        regionData.elapsedTime = string.Format("{0:00}:{1:00}:{2:00}", elapsed.Minutes, elapsed.Seconds, elapsed.Milliseconds);
+       
+        if (!_regionTable.ContainsKey(_previousRegion))
+        {
+            _regionTable.Add(_previousRegion, 0);
+        } else
+        {
+            _regionTable[_previousRegion] += _stopwatch.Elapsed.TotalSeconds;
+        }
+
+
     }
 
     public bool isWatchRunning()
@@ -114,19 +130,39 @@ public class DataHandler : MonoBehaviour
         return _stopwatch.IsRunning;
     }
 
-    public void startRecordingEvidence(string name)
+    public void recordGazeTime(string name)
     {
-        evidenceData = new PlayerData.Evidence();
-        evidenceData.name = name;
-        evidenceData.startTime = string.Format("{0}:{1}:{2}:{3}", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond);
-        startTimer();
+        String currentRegion = name;
+        if(!currentRegion.Equals(_previousRegion))
+        {
+            if(isWatchRunning())
+                endRecordingEvidence();
+
+            regionData = new PlayerData.Regions();
+            regionData.name = name;
+            regionData.startTime = string.Format("{0}:{1}:{2}:{3}", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond);
+            startTimer();
+
+            _previousRegion = currentRegion;
+        } 
+
     }
 
     public void endRecordingEvidence()
     {
-        evidenceData.endTime = string.Format("{0}:{1}:{2}:{3}", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond);
-        playerData.evidenceList.Add(DataHandler.instance.evidenceData);
+        regionData.endTime = string.Format("{0}:{1}:{2}:{3}", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond);
+        playerData.regionList.Add(DataHandler.instance.regionData);
         stopTimer();
+    }
+
+
+    public void collectMeshTrackingData(Vector3 hitPoint, float distance, Vector3 rayDirection)
+    {
+        eyeData = new PlayerData.MeshEyeData();
+        eyeData.hitPoint = hitPoint;
+        eyeData.distanceToPlayer = distance;
+        eyeData.direction = rayDirection;
+        playerData.meshEyeDataList.Add(eyeData);
     }
 
     private void WriteToFile()
@@ -137,28 +173,21 @@ public class DataHandler : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-
-        if (PlayerPrefs.GetString("Condition").Equals("HitAndRun"))
+        DataHandler.instance.endRecordingEvidence();
+        foreach (KeyValuePair<string, double> entry in _regionTable)
         {
-            foreach (KeyValuePair<string, string> item in RayHitEvidence._evidenceTable)
-            {
-                lookingData = new PlayerData.LookingBehaviour();
-                lookingData.name = item.Key;
-                lookingData.time = item.Value;
-                playerData.observationList.Add(lookingData);
-            }
+            _totalTimePassed = new PlayerData.TimePassed();
+            _totalTimePassed.regionName = entry.Key;
+            _totalTimePassed.totalTimePassed = entry.Value;
+            playerData.timePassedList.Add(_totalTimePassed);
+            UnityEngine.Debug.Log(entry.Key + " " + entry.Value);
         }
+
 
         if (_isRecording)
         {
-            if (DataHandler.instance.isWatchRunning())
-            {
-                DataHandler.instance.endRecordingEvidence();
-            }
-
             UnityEngine.Debug.Log("Exiting application and writing to file.");
             WriteToFile();
         }
-
     }
 }

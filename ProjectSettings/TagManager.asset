@@ -8,6 +8,15 @@ TagManager:
   - FxTemporaire
   - PinkTrajectory
   - BlueTrajectory
+  - WallWithWindow
+  - Chair
+  - Plant
+  - Shelf
+  - WallWithSpatter
+  - BlueOrigin
+  - PinkOrigin
+  - SmallWindow
+  - WallWiithDoor
   layers:
   - Default
   - TransparentFX
@@ -18,7 +27,7 @@ TagManager:
   - 
   - 
   - Mesh
-  - 
+  - AreaOfInterest
   - 
   - 
   - 

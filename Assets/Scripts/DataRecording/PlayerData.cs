@@ -9,8 +9,9 @@ public class PlayerData
     public string condition;
     public List<string> timeStampList;
     public List<HeadData> headDataList;
-    public List<Evidence> evidenceList;
-    public List<LookingBehaviour> observationList;
+    public List<Regions> regionList;
+    public List<MeshEyeData> meshEyeDataList;
+    public List<TimePassed> timePassedList;
 
     [System.Serializable]
     public class HeadData
@@ -20,7 +21,7 @@ public class PlayerData
     }
 
     [System.Serializable]
-    public class Evidence
+    public class Regions
     {
         public string name;
         public string startTime;
@@ -29,10 +30,18 @@ public class PlayerData
     }
 
     [System.Serializable]
-    public class LookingBehaviour
+    public class MeshEyeData
     {
-        public string name;
-        public string time;
+        public Vector3 hitPoint;
+        public Vector3 direction;
+        public float distanceToPlayer;
+    }
+
+    [System.Serializable]
+    public class TimePassed
+    {
+        public string regionName;
+        public double totalTimePassed;
     }
 
 
