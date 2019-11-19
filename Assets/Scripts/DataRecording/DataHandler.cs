@@ -11,8 +11,8 @@ public class DataHandler : MonoBehaviour
     [HideInInspector]
     public PlayerData playerData;
     [HideInInspector]
-    public PlayerData.Regions regionData;
-    private PlayerData.MeshEyeData eyeData;
+    private PlayerData.Regions _regionData;
+    private PlayerData.MeshEyeData _eyeData;
     private PlayerData.HeadData _head;
     private PlayerData.TimePassed _totalTimePassed;
     private Stopwatch _stopwatch;
@@ -20,14 +20,12 @@ public class DataHandler : MonoBehaviour
     private string _logFilePath;
     private string _logDir;
     private string _previousRegion;
-    public Dictionary<string, double> _regionTable;
+    private Dictionary<string, double> _regionTable;
 
 
     private float _interval = 1f;
     private float _currentTime = 0f;
-    private bool _isRecording = true;
-
-    private GameObject _target;
+    private bool _isRecording = false;
 
 
     private static DataHandler _instance;
@@ -73,8 +71,8 @@ public class DataHandler : MonoBehaviour
 
         _stopwatch = new Stopwatch();
         _head = new PlayerData.HeadData();
-        regionData = new PlayerData.Regions();
-        eyeData = new PlayerData.MeshEyeData();
+        _regionData = new PlayerData.Regions();
+        _eyeData = new PlayerData.MeshEyeData();
 
         UnityEngine.Debug.Log("Log files stored to: " + _logDir);
 
@@ -112,7 +110,7 @@ public class DataHandler : MonoBehaviour
         _stopwatch.Stop();
         System.TimeSpan elapsed = _stopwatch.Elapsed;
 
-        regionData.elapsedTime = string.Format("{0:00}:{1:00}:{2:00}", elapsed.Minutes, elapsed.Seconds, elapsed.Milliseconds);
+        _regionData.elapsedTime = string.Format("{0:00}:{1:00}:{2:00}", elapsed.Minutes, elapsed.Seconds, elapsed.Milliseconds);
        
         if (!_regionTable.ContainsKey(_previousRegion))
         {
@@ -138,9 +136,9 @@ public class DataHandler : MonoBehaviour
             if(isWatchRunning())
                 endRecordingEvidence();
 
-            regionData = new PlayerData.Regions();
-            regionData.name = name;
-            regionData.startTime = string.Format("{0}:{1}:{2}:{3}", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond);
+            _regionData = new PlayerData.Regions();
+            _regionData.name = name;
+            _regionData.startTime = string.Format("{0}:{1}:{2}:{3}", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond);
             startTimer();
 
             _previousRegion = currentRegion;
@@ -150,19 +148,19 @@ public class DataHandler : MonoBehaviour
 
     public void endRecordingEvidence()
     {
-        regionData.endTime = string.Format("{0}:{1}:{2}:{3}", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond);
-        playerData.regionList.Add(DataHandler.instance.regionData);
+        _regionData.endTime = string.Format("{0}:{1}:{2}:{3}", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond);
+        playerData.regionList.Add(DataHandler.instance._regionData);
         stopTimer();
     }
 
 
     public void collectMeshTrackingData(Vector3 hitPoint, float distance, Vector3 rayDirection)
     {
-        eyeData = new PlayerData.MeshEyeData();
-        eyeData.hitPoint = hitPoint;
-        eyeData.distanceToPlayer = distance;
-        eyeData.direction = rayDirection;
-        playerData.meshEyeDataList.Add(eyeData);
+        _eyeData = new PlayerData.MeshEyeData();
+        _eyeData.hitPoint = hitPoint;
+        _eyeData.distanceToPlayer = distance;
+        _eyeData.direction = rayDirection;
+        playerData.meshEyeDataList.Add(_eyeData);
     }
 
     private void WriteToFile()

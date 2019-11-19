@@ -832,11 +832,6 @@ MonoBehaviour:
     regionList: []
     meshEyeDataList: []
     timePassedList: []
-  regionData:
-    name: 
-    startTime: 
-    endTime: 
-    elapsedTime: 
 --- !u!4 &389426564
 Transform:
   m_ObjectHideFlags: 0
@@ -1216,7 +1211,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3ebfcbade349a674d80a6a3865fe8e72, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f5c4c701ecf53ff41b718e64e70c9ace, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
