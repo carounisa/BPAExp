@@ -7,6 +7,7 @@ public class PlayerData
 {
     public int pNumber;
     public string condition;
+    public List<AudioTime> audioTimeList;
     public List<string> timeStampList;
     public List<HeadData> headDataList;
     public List<Regions> regionList;
@@ -42,6 +43,20 @@ public class PlayerData
     {
         public string regionName;
         public double totalTimePassed;
+    }
+
+    [System.Serializable]
+    public class AudioTime
+    {
+        public float audioTime;
+        public enum WhereToLook {
+            WINDOWWALL,
+            SPATTERWALL,
+            SPATTER_PINK,
+            SPATTER_BLUE,
+            CHAIR, WINDOW,
+            ORIGIN_PINK,
+            ORIGIN_BLUE }
     }
 
 

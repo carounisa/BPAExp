@@ -111,9 +111,6 @@ namespace Valve.VR.Extras
                 highlightMat.SetFloat("g_flOutlineWidth", _highlightWidth);
                 yield return null;
             }
-
-
-
         }
     }
 }
