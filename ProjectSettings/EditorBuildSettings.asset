@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BPAExperiment.unity
     guid: d21af4eb255507747bb87501eaa03f7d
+  - enabled: 1
+    path: Assets/BPAStart.unity
+    guid: 406bfc65730b00f44b5bebdc9417d6ae
+  - enabled: 1
+    path: Assets/Scenes/BPAExperimentVR.unity
+    guid: 7473515da33a5ef499ceff33dbbc9fa8
   m_configObjects: {}

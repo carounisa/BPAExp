@@ -31,7 +31,6 @@ public class Fade : MonoBehaviour
         {
             _counter += Time.deltaTime / _duration;
             _currentAlpha = Mathf.Lerp(_currentAlpha, _targetAlpha, _counter);
-            Debug.Log(_currentAlpha);
             gameObject.GetComponent<Renderer>().material.SetFloat(material, _currentAlpha);
             yield return null;
         } 

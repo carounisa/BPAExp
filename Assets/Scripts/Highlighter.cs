@@ -62,7 +62,7 @@ namespace Valve.VR.Extras
 
                 RenderHighlight();
 
-                StopAllCoroutines();
+                //StopAllCoroutines();
                 StartCoroutine(GrowHighlight());
 
             }

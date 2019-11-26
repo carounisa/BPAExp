@@ -7,15 +7,23 @@ public class StartTimeline : MonoBehaviour
 {
     [SerializeField] PlayableDirector _timeline;
     [SerializeField] AudioSource _audioSource;
+    private const int finish = 3;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Timeline and Audio start playing now");
-            _audioSource.Play();
             _timeline.Play();
+            StartCoroutine(startAudio());
         }
+    }
+
+    public IEnumerator startAudio()
+    {
+        _audioSource.Play();
+        yield return new WaitForSeconds(_audioSource.clip.length + finish);
+        Application.Quit();
     }
 
 

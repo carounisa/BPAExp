@@ -31,7 +31,7 @@ public class DataHandler : MonoBehaviour
 
     private float _interval = 1f;
     private float _currentTime = 0f;
-    private bool _isRecording = true;
+    private bool _isRecording = false;
 
 
     private static DataHandler _instance;
@@ -106,7 +106,6 @@ public class DataHandler : MonoBehaviour
                     {
                         _audioTime = new PlayerData.AudioTime();
                         _audioTime.audioTime = audioSource.time;
-                        UnityEngine.Debug.Log(_audioTime.audioTime);
                         playerData.audioTimeList.Add(_audioTime);
                     }
               //  }
