@@ -5,8 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
-    public int pNumber;
-    public string condition;
     public List<AudioTime> audioTimeList;
     public List<string> timeStampList;
     public List<HeadData> headDataList;
@@ -49,14 +47,6 @@ public class PlayerData
     public class AudioTime
     {
         public float audioTime;
-        public enum WhereToLook {
-            WINDOWWALL,
-            SPATTERWALL,
-            SPATTER_PINK,
-            SPATTER_BLUE,
-            CHAIR, WINDOW,
-            ORIGIN_PINK,
-            ORIGIN_BLUE }
     }
 
 

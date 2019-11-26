@@ -25,11 +25,13 @@ public class DataHandler : MonoBehaviour
     private string _logDir;
     private string _previousRegion;
     private Dictionary<string, double> _regionTable;
+    private int _pNumber;
+    private string _condition;
 
 
     private float _interval = 1f;
     private float _currentTime = 0f;
-    private bool _isRecording = false;
+    private bool _isRecording = true;
 
 
     private static DataHandler _instance;
@@ -64,14 +66,15 @@ public class DataHandler : MonoBehaviour
         playerData.timeStampList = new List<string>();
         playerData.timePassedList = new List<PlayerData.TimePassed>();
         playerData.audioTimeList = new List<PlayerData.AudioTime>();
-        playerData.pNumber = PlayerPrefs.GetInt("Participant Number");
-        playerData.condition = PlayerPrefs.GetString("Condition");
+
+        _pNumber = PlayerPrefs.GetInt("Participant Number");
+        _condition = PlayerPrefs.GetString("Condition");
 
         _regionTable = new Dictionary<string, double>();
 
         _logFile = string.Format("log{0}-PNum{1}_Con_{2}.json",
             System.DateTime.Now.ToString("dd-MM-yyyy"),
-            playerData.pNumber, playerData.condition);
+            _pNumber, _condition);
         _logFilePath = Path.Combine(_logDir, _logFile);
 
         _stopwatch = new Stopwatch();
@@ -91,22 +94,23 @@ public class DataHandler : MonoBehaviour
             // record every second
             if (_currentTime >= _interval)
             {
-                if (playerData.condition.Equals("HitAndRun"))
-                {
+            //    if (playerData.condition.Equals("BPAExperimentVR"))
+             //   {
                     _head = new PlayerData.HeadData();
                     _head.headPosition = Player.instance.hmdTransform.position;
                     _head.direction = Player.instance.hmdTransform.forward;
                     playerData.headDataList.Add(_head);
                     playerData.timeStampList.Add(string.Format("{0}:{1}:{2}:{3}", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond));
-                    UnityEngine.Debug.Log(audioSource.isPlaying);
+
                     if (audioSource.isPlaying)
                     {
                         _audioTime = new PlayerData.AudioTime();
                         _audioTime.audioTime = audioSource.time;
+                        UnityEngine.Debug.Log(_audioTime.audioTime);
                         playerData.audioTimeList.Add(_audioTime);
-       
                     }
-                }
+              //  }
+              //  }
                 _currentTime = _currentTime % _interval;
             }
         }
@@ -124,7 +128,7 @@ public class DataHandler : MonoBehaviour
         System.TimeSpan elapsed = _stopwatch.Elapsed;
 
         _regionData.elapsedTime = string.Format("{0:00}:{1:00}:{2:00}", elapsed.Minutes, elapsed.Seconds, elapsed.Milliseconds);
-        if ((_previousRegion!= null) && (!_regionTable.ContainsKey(_previousRegion)))
+        if ((_previousRegion != null) && (!_regionTable.ContainsKey(_previousRegion)))
         {
             _regionTable.Add(_previousRegion, 0);
         } else
@@ -184,7 +188,6 @@ public class DataHandler : MonoBehaviour
     private void OnApplicationQuit()
     {
         DataHandler.instance.endRecordingEvidence();
-
 
         if (_isRecording)
         {

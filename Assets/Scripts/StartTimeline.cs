@@ -5,17 +5,16 @@ using UnityEngine.Playables;
 
 public class StartTimeline : MonoBehaviour
 {
-    [SerializeField]
-    PlayableDirector _timeline;
+    [SerializeField] PlayableDirector _timeline;
+    [SerializeField] AudioSource _audioSource;
 
-    // Update is called once per frame
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("Timeline and Audio start playing now");
+            _audioSource.Play();
             _timeline.Play();
-
         }
     }
 

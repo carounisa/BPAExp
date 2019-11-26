@@ -22,7 +22,6 @@ namespace Valve.VR.Extras
             highlightMat = (Material)Resources.Load("SteamVR_HoverHighlight", typeof(Material));
             _highlightWidth = 0f;
 
-
             if (highlightMat == null)
                 UnityEngine.Debug.LogError("<b>[SteamVR Interaction]</b> Hover Highlight Material is missing. Please create a material named 'SteamVR_HoverHighlight' and place it in a Resources folder");
         }
