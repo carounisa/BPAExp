@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BPAExperiment.unity
     guid: d21af4eb255507747bb87501eaa03f7d
   - enabled: 1
@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BPAExperimentVR.unity
     guid: 7473515da33a5ef499ceff33dbbc9fa8
+  - enabled: 1
+    path: Assets/Training.unity
+    guid: 95e0efc6ad073664b943700e260579d3
   m_configObjects: {}

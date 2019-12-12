@@ -89,6 +89,14 @@ namespace Valve.VR
             }
         }
         
+        public virtual SteamVR_Action_Boolean CaptureScreen
+        {
+            get
+            {
+                return SteamVR_Actions.default_CaptureScreen;
+            }
+        }
+        
         public virtual SteamVR_Action_Vibration Haptic
         {
             get

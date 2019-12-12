@@ -53,10 +53,10 @@ public class SetPlayerPrefs : MonoBehaviour
             PlayerPrefs.SetInt("Recording", 1);
         }
 
-        if ((PlayerPrefs.GetString("Condition").Equals("BPAExperimentVR")))
-        {
+    //    if ((PlayerPrefs.GetString("Condition").Equals("BPAExperimentVR")))
+    //    {
             XRSettings.enabled = true;
-        }
+  //      }
 
         SceneManager.LoadScene(_dropdownSelection);
     }

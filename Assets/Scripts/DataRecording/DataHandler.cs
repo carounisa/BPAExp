@@ -31,7 +31,8 @@ public class DataHandler : MonoBehaviour
 
     private float _interval = 1f;
     private float _currentTime = 0f;
-    private bool _isRecording = false;
+    private bool _isRecording;
+    private bool _isRecordingGaze;
 
 
     private static DataHandler _instance;
@@ -68,6 +69,7 @@ public class DataHandler : MonoBehaviour
         playerData.audioTimeList = new List<PlayerData.AudioTime>();
 
         _pNumber = PlayerPrefs.GetInt("Participant Number");
+        UnityEngine.Debug.Log(_pNumber);
         _condition = PlayerPrefs.GetString("Condition");
 
         _regionTable = new Dictionary<string, double>();
@@ -82,7 +84,10 @@ public class DataHandler : MonoBehaviour
         _regionData = new PlayerData.Regions();
         _eyeData = new PlayerData.MeshEyeData();
 
-        UnityEngine.Debug.Log("Log files stored to: " + _logDir);
+         _isRecordingGaze = false;
+
+
+    UnityEngine.Debug.Log("Log files stored to: " + _logDir);
 
     }
 
@@ -127,6 +132,7 @@ public class DataHandler : MonoBehaviour
         System.TimeSpan elapsed = _stopwatch.Elapsed;
 
         _regionData.elapsedTime = string.Format("{0:00}:{1:00}:{2:00}", elapsed.Minutes, elapsed.Seconds, elapsed.Milliseconds);
+
         if ((_previousRegion != null) && (!_regionTable.ContainsKey(_previousRegion)))
         {
             _regionTable.Add(_previousRegion, 0);
@@ -157,15 +163,19 @@ public class DataHandler : MonoBehaviour
             startTimer();
 
             _previousRegion = currentRegion;
-        } 
+        }
 
+        _isRecordingGaze = true;
     }
 
     public void endRecordingEvidence()
     {
-        _regionData.endTime = string.Format("{0}:{1}:{2}:{3}", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond);
-        playerData.regionList.Add(DataHandler.instance._regionData);
-        stopTimer();
+        if (_isRecordingGaze)
+        {
+            _regionData.endTime = string.Format("{0}:{1}:{2}:{3}", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Millisecond);
+            playerData.regionList.Add(DataHandler.instance._regionData);
+            stopTimer();
+        }
     }
 
 
@@ -186,6 +196,7 @@ public class DataHandler : MonoBehaviour
 
     private void OnApplicationQuit()
     {
+
         DataHandler.instance.endRecordingEvidence();
 
         if (_isRecording)
@@ -196,8 +207,8 @@ public class DataHandler : MonoBehaviour
                 _totalTimePassed.regionName = entry.Key;
                 _totalTimePassed.totalTimePassed = entry.Value;
                 playerData.timePassedList.Add(_totalTimePassed);
-                UnityEngine.Debug.Log(entry.Key + " " + entry.Value);
             }
+
             UnityEngine.Debug.Log("Exiting application and writing to file.");
             WriteToFile();
         }
